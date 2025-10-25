@@ -1,0 +1,17 @@
+Ticket ID: 4352
+Category: Bug Report
+Priority: High
+
+Description:
+When users upload large .png memes (>5MB), the compression API fails intermittently.
+
+Steps to Reproduce:
+1. Go to "Upload Meme" page
+2. Choose a high-resolution meme
+3. Observe timeout error in browser console
+
+Expected:
+Image should compress and store successfully.
+
+Actual:
+API returns 504 Gateway Timeout error.

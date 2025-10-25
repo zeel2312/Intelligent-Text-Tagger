@@ -1,0 +1,6 @@
+Recall may be thought of as a measure of a classifier's completeness which gives us the proportion
+of actual positive which is identified correctly by the predicted classifier. It is the ratio of correct positive
+instances and combines with correct positive and wrong positive. It is also called Sensitivity. If recall
+returns us a low recall value, then it indicates many False NegativesIn an uneven class distribution, F1 is a good choice as a performance metric. It is the weighted
+average of both properties, Recall and Precision. This performance metric takes both false negatives
+and false positives into the calculation.
