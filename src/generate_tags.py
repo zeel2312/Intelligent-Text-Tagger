@@ -110,7 +110,8 @@ def generate_tags(docs: List[Dict[str, str]], top_k: int = 5) -> List[Dict[str, 
             if adjusted_score > 0:
                 top_terms_with_scores.append({
                     "tag": term,
-                    "tfidf_score": float(original_tfidf_score)
+                    "tfidf_score": float(original_tfidf_score),
+                    "adjusted_tfidf_score": float(adjusted_score)
                 })
 
         tags_output.append({

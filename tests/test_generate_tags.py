@@ -171,6 +171,9 @@ class TestGenerateTags(unittest.TestCase):
                 self.assertIn("tfidf_score", tag)
                 self.assertIsInstance(tag["tfidf_score"], float)
                 self.assertGreaterEqual(tag["tfidf_score"], 0.0)
+                self.assertIn("adjusted_tfidf_score", tag)
+                self.assertIsInstance(tag["adjusted_tfidf_score"], float)
+                self.assertGreaterEqual(tag["adjusted_tfidf_score"], 0.0)
     
     def test_generate_tags_top_k_limit(self):
         """

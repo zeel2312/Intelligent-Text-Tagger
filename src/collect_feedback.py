@@ -157,7 +157,7 @@ def simulate_feedback(tags_data, docs_texts):
         feedback_list = []
         for tag_data in tags:
             tag = tag_data["tag"]
-            tfidf_score = tag_data["tfidf_score"]
+            tfidf_score = tag_data.get("adjusted_tfidf_score", tag_data["tfidf_score"])
             
             # Calculate multi-signal scores
             freq_score = calculate_frequency_score(tag, cleaned_text)

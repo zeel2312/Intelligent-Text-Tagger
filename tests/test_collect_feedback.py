@@ -40,9 +40,9 @@ class TestCollectFeedback(unittest.TestCase):
             {
                 "filename": "test1.txt",
                 "tags": [
-                    {"tag": "api", "tfidf_score": 0.8},
-                    {"tag": "error", "tfidf_score": 0.6},
-                    {"tag": "timeout", "tfidf_score": 0.4}
+                    {"tag": "api", "tfidf_score": 0.8, "adjusted_tfidf_score": 0.8},
+                    {"tag": "error", "tfidf_score": 0.6, "adjusted_tfidf_score": 0.6},
+                    {"tag": "timeout", "tfidf_score": 0.4, "adjusted_tfidf_score": 0.4}
                 ]
             }
         ]
@@ -214,8 +214,8 @@ class TestCollectFeedback(unittest.TestCase):
             {
                 "filename": "test1.txt",
                 "tags": [
-                    {"tag": "api", "tfidf_score": 0.8},  # High TF-IDF
-                    {"tag": "xyz", "tfidf_score": 0.1}   # Low TF-IDF
+                    {"tag": "api", "tfidf_score": 0.8, "adjusted_tfidf_score": 0.8},  # High TF-IDF
+                    {"tag": "xyz", "tfidf_score": 0.1, "adjusted_tfidf_score": 0.1}   # Low TF-IDF
                 ]
             }
         ]

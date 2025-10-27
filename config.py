@@ -29,20 +29,3 @@ POSITION_SCORES = {
     "body": 0.4,         # Body text
     "not_found": 0.0     # Not found
 }
-
-# Future: document-type specific configs
-DOCUMENT_TYPE_CONFIGS = {
-    # Example structure for future implementation:
-    # "meeting_notes": {
-    #     "tfidf_weight": 0.6,
-    #     "frequency_weight": 0.2,
-    #     "position_weight": 0.2,
-    #     "approval_threshold": 0.3
-    # },
-    # "support_tickets": {
-    #     "tfidf_weight": 0.4,
-    #     "frequency_weight": 0.4,
-    #     "position_weight": 0.2,
-    #     "approval_threshold": 0.4
-    # }
-}
