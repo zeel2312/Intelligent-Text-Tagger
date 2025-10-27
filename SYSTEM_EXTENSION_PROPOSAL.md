@@ -203,10 +203,10 @@ Improvement: More contextually relevant tags
 
 ## Summary
 
-**Current:** TF-IDF-based tag generation
-**Extension:** Optional Vector embeddings with similarity search
-**Benefit:** Better semantic understanding of documents
-**Approach:** Clean, separated, scalable architecture
-**User Choice:** Fast default (TF-IDF) or enhanced (Vector)
+- **Current:** TF-IDF-based tag generation
+- **Extension:** Optional Vector embeddings with similarity search
+- **Benefit:** Better semantic understanding of documents
+- **Approach:** Clean, separated, scalable architecture
+- **User Choice:** Fast default (TF-IDF) or enhanced (Vector)
 
 The extension provides users with a way to improve tag quality when needed, while keeping the simple and fast TF-IDF approach as the default option.
