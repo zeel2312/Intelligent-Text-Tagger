@@ -14,7 +14,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 # Import session management
-from web.utils.session_manager import init_session_state, load_state_from_files, get_state_summary, reload_from_files_if_newer
+from web.utils.session_manager import init_session_state, load_state_from_files, reload_from_files_if_newer
 
 # Import our existing modules
 from src.generate_tags import generate_tags, load_documents

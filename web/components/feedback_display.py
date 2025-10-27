@@ -77,6 +77,13 @@ def display_feedback(feedback_data):
 
 def collect_feedback_interface():
     """Interface for collecting feedback"""
+    
+    # Display existing feedback if available
+    if 'collected_feedback' in st.session_state and st.session_state['collected_feedback'] is not None:
+        st.info("📂 Loaded previously collected feedback")
+        display_feedback(st.session_state['collected_feedback'])
+        st.divider()
+    
     st.subheader("🔄 Collect Feedback")
     
     # Check if tags exist
@@ -124,9 +131,3 @@ def collect_feedback_interface():
                 
             except Exception as e:
                 st.error(f"❌ Error: {str(e)}")
-    st.divider()
-    
-    # Display existing feedback if available
-    if 'collected_feedback' in st.session_state and st.session_state['collected_feedback'] is not None:
-        st.info("📂 Loaded previously collected feedback")
-        display_feedback(st.session_state['collected_feedback'])

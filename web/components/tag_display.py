@@ -50,9 +50,14 @@ def display_tags(tags_data=None):
 
 def generate_tags_interface():
     """Interface for generating tags"""    
-
-    st.subheader("🔧 Generate Tags")
     
+    # Display existing tags if available
+    if 'generated_tags' in st.session_state and st.session_state['generated_tags'] is not None:
+        st.info("📂 Loaded previously generated tags")
+        display_tags(st.session_state['generated_tags'])
+        st.divider()
+    
+    st.subheader("🔧 Generate Tags")
     # Parameters
     col1, col2 = st.columns(2)
     with col1:
@@ -98,9 +103,3 @@ def generate_tags_interface():
             except Exception as e:
                 st.error(f"❌ Error: {str(e)}")
                 
-    st.divider()
-    
-    # Display existing tags if available
-    if 'generated_tags' in st.session_state and st.session_state['generated_tags'] is not None:
-        st.info("📂 Loaded previously generated tags")
-        display_tags(st.session_state['generated_tags'])
