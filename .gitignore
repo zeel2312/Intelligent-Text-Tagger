@@ -16,3 +16,5 @@ pipeline_output/
 # Test coverage
 .pytest_cache/
 .coverage
+
+misc/
