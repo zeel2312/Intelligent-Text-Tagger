@@ -21,6 +21,11 @@ import math
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
+
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
 from config import TFIDF_WEIGHT, FREQUENCY_WEIGHT, POSITION_WEIGHT, APPROVAL_THRESHOLD, POSITION_SCORES
 
 # -------------------------------------------------------------------------
@@ -47,9 +52,7 @@ def load_tags(tags_file):
         return []
 
 
-# -------------------------------------------------------------------------
 #  Position Scoring Function
-# -------------------------------------------------------------------------
 def calculate_position_score(tag, raw_text):
     """
     Scores tag based on where it appears in document.
@@ -93,9 +96,7 @@ def calculate_position_score(tag, raw_text):
     return POSITION_SCORES["not_found"]
 
 
-# -------------------------------------------------------------------------
 #  Frequency Scoring Function
-# -------------------------------------------------------------------------
 def calculate_frequency_score(tag, cleaned_text):
     """
     Normalized frequency score (0.0 to 1.0).
@@ -111,9 +112,7 @@ def calculate_frequency_score(tag, cleaned_text):
     return score
 
 
-# -------------------------------------------------------------------------
 #  Text Cleaning Function
-# -------------------------------------------------------------------------
 def clean_text(text: str) -> str:
     """
     Cleans and normalizes input text for keyword extraction.
@@ -135,9 +134,7 @@ def clean_text(text: str) -> str:
     return " ".join(filtered_tokens)
 
 
-# -------------------------------------------------------------------------
 #  Multi-Signal Feedback Simulation
-# -------------------------------------------------------------------------
 def simulate_feedback(tags_data, docs_texts):
     """
     Evaluates each tag using weighted multi-signal scoring:
@@ -190,18 +187,14 @@ def simulate_feedback(tags_data, docs_texts):
     return feedback_results
 
 
-# -------------------------------------------------------------------------
 #  Save feedback to JSON
-# -------------------------------------------------------------------------
-def save_feedback(feedback, output_path="feedback.json"):
+def save_feedback(feedback, output_path="outputs/feedback.json"):
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(feedback, f, indent=2)
     print(f"\n Feedback saved to {output_path}")
 
 
-# -------------------------------------------------------------------------
 #  Display Summary
-# -------------------------------------------------------------------------
 def print_summary(feedback_results):
     print("\n Feedback Summary")
     print("-" * 40)
@@ -237,12 +230,10 @@ def print_summary(feedback_results):
     print(f"\n Overall: {total_approved}/{total_tags} approved ({approval_rate:.1f}%)")
 
 
-# -------------------------------------------------------------------------
 #  Main CLI Entrypoint
-# -------------------------------------------------------------------------
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Simulate user feedback on tags (rule-based).")
-    parser.add_argument("--tags", type=str, default="tags.json", help="Path to tags.json file")
+    parser.add_argument("--tags", type=str, default="outputs/tags.json", help="Path to tags.json file")
     parser.add_argument("--docs", type=str, default="documents", help="Path to document folder")
     parser.add_argument("--save", action="store_true", help="Save feedback to feedback.json")
     args = parser.parse_args()

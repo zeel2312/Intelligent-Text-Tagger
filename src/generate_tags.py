@@ -22,7 +22,6 @@ from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 import nltk
 from nltk.stem import WordNetLemmatizer
-from config import TFIDF_WEIGHT, FREQUENCY_WEIGHT, POSITION_WEIGHT
 
 # First-time setup (downloads tokenizer + stopword list)
 nltk.download('punkt', quiet=True)
@@ -30,24 +29,20 @@ nltk.download('punkt_tab', quiet=True)
 nltk.download('stopwords', quiet=True)
 nltk.download('wordnet', quiet=True)
 
-# -------------------------------------------------------------------------
 #  Load learned tag weights (if available)
-# -------------------------------------------------------------------------
-def load_tag_weights(weights_path="tag_weights.json"):
+def load_tag_weights(weights_path="outputs/tag_weights.json"):
     if os.path.exists(weights_path):
         try:
             with open(weights_path, "r", encoding="utf-8") as f:
                 weights = json.load(f)
-                print(f"📘 Loaded {len(weights)} learned tag weights.")
+                print(f" Loaded {len(weights)} learned tag weights.")
                 return weights
         except Exception as e:
             print(f" Could not load {weights_path}: {e}")
     return {}
 
 
-# -------------------------------------------------------------------------
 #  Text Cleaning Function
-# -------------------------------------------------------------------------
 def clean_text(text: str) -> str:
     """
     Cleans and normalizes input text for keyword extraction.
@@ -69,9 +64,7 @@ def clean_text(text: str) -> str:
     return " ".join(filtered_tokens)
 
 
-# -------------------------------------------------------------------------
 #  Document Loader
-# -------------------------------------------------------------------------
 def load_documents(folder_path: str) -> List[Dict[str, str]]:
     docs = []
     for filename in os.listdir(folder_path):
@@ -84,9 +77,7 @@ def load_documents(folder_path: str) -> List[Dict[str, str]]:
     return docs
 
 
-# -------------------------------------------------------------------------
 #  TF-IDF Tag Generator
-# -------------------------------------------------------------------------
 def generate_tags(docs: List[Dict[str, str]], top_k: int = 5) -> List[Dict[str, List[Dict[str, float]]]]:
     """
     Takes a list of documents (with 'content' key).
@@ -130,18 +121,14 @@ def generate_tags(docs: List[Dict[str, str]], top_k: int = 5) -> List[Dict[str, 
 
 
 
-# -------------------------------------------------------------------------
 #  Save tags to JSON
-# -------------------------------------------------------------------------
-def save_tags_to_json(tags: List[Dict[str, List[str]]], output_path: str = "tags.json"):
+def save_tags_to_json(tags: List[Dict[str, List[str]]], output_path: str = "outputs/tags.json"):
     with open(output_path, 'w', encoding='utf-8') as f:
         json.dump(tags, f, indent=2)
     print(f"\n Tags saved to {output_path}")
 
 
-# -------------------------------------------------------------------------
 #  CLI Entrypoint
-# -------------------------------------------------------------------------
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate TF-IDF tags for documents.")
     parser.add_argument("--folder", type=str, default="documents", help="Path to document folder")

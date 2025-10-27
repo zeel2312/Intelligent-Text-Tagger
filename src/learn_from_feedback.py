@@ -14,11 +14,14 @@ Workflow:
 import json
 import argparse
 from collections import defaultdict
+
+
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).parent.parent))
 from config import LEARNING_WEIGHTS
 
-# -------------------------------------------------------------------------
 #  Load feedback file
-# -------------------------------------------------------------------------
 def load_feedback(feedback_path):
     try:
         with open(feedback_path, "r", encoding="utf-8") as f:
@@ -28,9 +31,7 @@ def load_feedback(feedback_path):
         return []
 
 
-# -------------------------------------------------------------------------
 #  Compute global tag approval statistics
-# -------------------------------------------------------------------------
 def compute_tag_stats(feedback_data):
     stats = defaultdict(lambda: {"approved": 0, "rejected": 0})
 
@@ -52,9 +53,7 @@ def compute_tag_stats(feedback_data):
     return tag_rates
 
 
-# -------------------------------------------------------------------------
 #  Apply learning rules -> produce weights
-# -------------------------------------------------------------------------
 def derive_tag_weights(tag_rates):
     """
     Apply nuanced learning rules with more gradations and avoid zero weights.
@@ -74,18 +73,14 @@ def derive_tag_weights(tag_rates):
     return weights
 
 
-# -------------------------------------------------------------------------
 #  Save weights to JSON
-# -------------------------------------------------------------------------
-def save_weights(weights, output_path="tag_weights.json"):
+def save_weights(weights, output_path="outputs/tag_weights.json"):
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(weights, f, indent=2)
     print(f"\n Tag weights saved to {output_path}")
 
 
-# -------------------------------------------------------------------------
 #  Print summary
-# -------------------------------------------------------------------------
 def print_summary(weights):
     strong_boosted = sum(1 for w in weights.values() if w >= 1.3)
     mild_boosted = sum(1 for w in weights.values() if 1.1 <= w < 1.3)
@@ -107,12 +102,10 @@ def print_summary(weights):
         print(f"  {tag}: {weight}")
 
 
-# -------------------------------------------------------------------------
 #  CLI Entrypoint
-# -------------------------------------------------------------------------
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Learn tag weights from feedback.json")
-    parser.add_argument("--feedback", type=str, default="feedback.json", help="Path to feedback.json")
+    parser.add_argument("--feedback", type=str, default="outputs/feedback.json", help="Path to feedback.json")
     parser.add_argument("--save", action="store_true", help="Save results to tag_weights.json")
     args = parser.parse_args()
 

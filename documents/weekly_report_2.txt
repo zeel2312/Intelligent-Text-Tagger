@@ -1,0 +1,22 @@
+WEEKLY REPORT
+
+Student Name: Zeel Thakkar
+From Date: 05/23/2022	To Date: 05/28/2022
+Semester: 6th
+
+Work done in last week:
+
+1. Validating different form fields
+2. Also validated using jQuery
+3. JQuery advance concepts 
+4. Made small projects using core php, jQuery, html, css
+5. Bank Management Project
+6. Implemented concept of foreign key, primary key in the project
+7. Introduction to AJAX
+8. Made a small project using AJAX and php
+
+Plans for next week:
+
+1.	Introduction to PHP framework Laravel
+2.	MVC concepts
+3.	jQuery  
