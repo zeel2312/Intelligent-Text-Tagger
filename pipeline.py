@@ -48,7 +48,7 @@ def run_pipeline(documents_folder="documents", output_dir="outputs", top_k=5):
         tags_file = os.path.join(output_dir, "tags.json")
         save_tags_to_json(tags, tags_file)
         
-        print(f"   Generated {sum(len(doc['tags']) for doc in tags)} tags for {len(documents)} documents")
+        print(f"Generated {sum(len(doc['tags']) for doc in tags)} tags for {len(documents)} documents")
         
         # Step 2: Collect Feedback
         print("\n Step 2: Collecting feedback...")
@@ -66,7 +66,7 @@ def run_pipeline(documents_folder="documents", output_dir="outputs", top_k=5):
                           for item in feedback_results)
         approval_rate = (approved_tags / total_tags * 100) if total_tags > 0 else 0
         
-        print(f"   Collected feedback for {total_tags} tags ({approval_rate:.1f}% approved)")
+        print(f"Collected feedback for {total_tags} tags ({approval_rate:.1f}% approved)")
         
         # Step 3: Learn from Feedback
         print("\n Step 3: Learning from feedback...")
@@ -82,7 +82,7 @@ def run_pipeline(documents_folder="documents", output_dir="outputs", top_k=5):
         boosted_tags = sum(1 for w in tag_weights.values() if w > 1.0)
         penalized_tags = sum(1 for w in tag_weights.values() if w < 1.0)
         
-        print(f"   Learned weights for {len(tag_weights)} tags ({boosted_tags} boosted, {penalized_tags} penalized)")
+        print(f"Learned weights for {len(tag_weights)} tags ({boosted_tags} boosted, {penalized_tags} penalized)")
         
         # Calculate total time
         total_time = time.time() - start_time
