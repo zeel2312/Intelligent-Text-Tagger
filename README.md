@@ -274,24 +274,33 @@ Adjust system parameters in `config.py`:
 ### Input Document
 
 ```
-documents/meeting_notes_2025_10_21.txt
+documents/weekly_report_2.txt
 
-Team Meeting - October 21, 2025
+WEEKLY REPORT
 
-Agenda:
-- Review Q4 roadmap progress
-- Discuss LLM evaluation automation
-- Plan next sprint deliverables
+Student Name: Zeel Thakkar
+From Date: 05/23/2022	To Date: 05/28/2022
+Semester: 6th
 
-Key Points:
-- QA automation reduced manual review time by 90%.
-- Dockerized LLM pipeline scaled to 5K+ users.
-- New Supabase dashboard in testing phase.
+Work done in last week:
 
-Next Steps:
-- Finalize evaluation metrics.
-- Prepare internal demo for Halluminate leadership.
+1. Validating different form fields
+2. Also validated using jQuery
+3. JQuery advance concepts 
+4. Made small projects using core php, jQuery, html, css
+5. Bank Management Project
+6. Implemented concept of foreign key, primary key in the project
+7. Introduction to AJAX
+8. Made a small project using AJAX and php
+
+Plans for next week:
+
+1.	Introduction to PHP framework Laravel
+2.	MVC concepts
+3.	jQuery  
 ```
+
+## 1st Run: (purely TF-IDF based)
 
 ### Generated Tags (Output)
 
@@ -299,13 +308,16 @@ Next Steps:
 
 ```json
 {
-  "filename": "meeting_notes_2025_10_21.txt",
+  "filename": "weekly_report_2.txt",
   "tags": [
-    { "tag": "automation", "tfidf_score": 0.295, "adjusted_tfidf_score": 0.384 },
-    { "tag": "evaluation", "tfidf_score": 0.295, "adjusted_tfidf_score": 0.384 },
-    { "tag": "llm", "tfidf_score": 0.295, "adjusted_tfidf_score": 0.384 },
-    { "tag": "review", "tfidf_score": 0.295, "adjusted_tfidf_score": 0.384 },
-    { "tag": "discus", "tfidf_score": 0.147, "adjusted_tfidf_score": 0.147 }
+    { "tag": "jquery", "tfidf_score": 0.398, "adjusted_tfidf_score": 0.398 },
+    { "tag": "project", "tfidf_score": 0.398, "adjusted_tfidf_score": 0.398 },
+    { "tag": "concept", "tfidf_score": 0.298, "adjusted_tfidf_score": 0.298 },
+    { "tag": "php", "tfidf_score": 0.298, "adjusted_tfidf_score": 0.298 },
+    { "tag": "using", "tfidf_score": 0.235, "adjusted_tfidf_score": 0.235 },
+    { "tag": "ajax", "tfidf_score": 0.199, "adjusted_tfidf_score": 0.199 },
+    { "tag": "date", "tfidf_score": 0.199, "adjusted_tfidf_score": 0.199 },
+    { "tag": "introduction", "tfidf_score": 0.199, "adjusted_tfidf_score": 0.199 }
   ]
 }
 ```
@@ -318,11 +330,14 @@ Next Steps:
 {
   "filename": "meeting_notes_2025_10_21.txt",
   "feedback": [
-    { "tag": "automation", "status": "approved", "relevance_score": 0.407 },
-    { "tag": "evaluation", "status": "approved", "relevance_score": 0.407 },
-    { "tag": "llm", "status": "approved", "relevance_score": 0.407 },
-    { "tag": "review", "status": "approved", "relevance_score": 0.407 },
-    { "tag": "discus", "status": "rejected", "relevance_score": 0.254 }
+    { "tag": "jquery", "status": "approved", "relevance_score": 0.458 },
+    { "tag": "project", "status": "approved", "relevance_score": 0.458 },
+    { "tag": "concept", "status": "approved", "relevance_score": 0.389 },
+    { "tag": "php", "status": "approved", "relevance_score": 0.389 },
+    { "tag": "using", "status": "approved", "relevance_score": 0.358 },
+    { "tag": "ajax", "status": "rejected", "relevance_score": 0.315 },
+    { "tag": "date", "status": "rejected", "relevance_score": 0.339 },
+    { "tag": "introduction", "status": "rejected", "relevance_score": 0.315 }
   ]
 }
 ```
@@ -333,18 +348,63 @@ Next Steps:
 
 ```json
 {
-  "automation": 1.3,
-  "evaluation": 1.3,
-  "llm": 1.3,
-  "review": 1.3,
-  "discus": 0.5
+  "jquery": 1.3,
+  "project": 1.3,
+  "concept": 1.3,
+  "php": 1.3,
+  "using": 1.3,
+  "ajax": 0.5,
+  "date": 0.5,
+  "introduction": 0.5,
 }
 ```
 
-**Interpretation:**
+## 2nd Run (with Learnings)
 
-- Scores > 1.0 mean the tag was approved frequently (gets boosted in future runs)
-- Score of 1.3 = strong boost (approval rate ≥80%)
+### Generated Tags (Output)
+
+**File: `outputs/tags.json`**
+
+```json
+{
+  "filename": "weekly_report_2.txt",
+  "tags": [
+    { "tag": "jquery", "tfidf_score": 0.398, "adjusted_tfidf_score": 0.517 },
+    { "tag": "project", "tfidf_score": 0.398, "adjusted_tfidf_score": 0.517 },
+    { "tag": "concept", "tfidf_score": 0.298, "adjusted_tfidf_score": 0.388 },
+    { "tag": "php", "tfidf_score": 0.298, "adjusted_tfidf_score": 0.388 },
+    { "tag": "using", "tfidf_score": 0.235, "adjusted_tfidf_score": 0.306 },
+    { "tag": "small", "tfidf_score": 0.199, "adjusted_tfidf_score": 0.199 },
+    { "tag": "week", "tfidf_score": 0.199, "adjusted_tfidf_score": 0.199 },
+    { "tag": "key", "tfidf_score": 0.156, "adjusted_tfidf_score": 0.199 }
+  ]
+}
+```
+
+### Feedback Results (Output)
+
+**File: `outputs/feedback.json`**
+
+```json
+{
+  "filename": "meeting_notes_2025_10_21.txt",
+  "feedback": [
+    { "tag": "jquery", "status": "approved", "relevance_score": 0.518 },
+    { "tag": "project", "status": "approved", "relevance_score": 0.518 },
+    { "tag": "concept", "status": "approved", "relevance_score": 0.434 },
+    { "tag": "php", "status": "approved", "relevance_score": 0.434 },
+    { "tag": "using", "status": "approved", "relevance_score": 0.393 },
+    { "tag": "small", "status": "rejected", "relevance_score": 0.315 },
+    { "tag": "week", "status": "approved", "relevance_score": 0.519 },
+    { "tag": "key", "status": "rejected", "relevance_score": 0.293 }
+  ]
+}
+```
+
+**Results:**
+
+- 5 Approvals | 3 Rejections (62.5% approval rate)
+- 6 Approvals | 2 Rejections (75% approval rate) 
 
 ---
 

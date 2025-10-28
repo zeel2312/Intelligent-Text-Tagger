@@ -149,7 +149,7 @@ if __name__ == "__main__":
     print("\n Generated Tags:\n")
     for t in tags:
         tag_names = [tag["tag"] for tag in t['tags']]
-        print(f" {t['filename']}: {tag_names}")
+        print(f"\n --> {t['filename']}: {tag_names}")
 
     if args.save:
         save_tags_to_json(tags)

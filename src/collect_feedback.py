@@ -209,7 +209,7 @@ def print_summary(feedback_results):
         total_approved += len(approved)
         total_rejected += len(rejected)
 
-        print(f"\n {item['filename']}")
+        print(f"\n --> {item['filename']}")
         print(f" {len(approved)} approved |  {len(rejected)} rejected")
         
         if approved:
